@@ -8,7 +8,6 @@ Sharing and developing sas macros and programs for standardization and automatio
 ## Summarizing Data
 
 ## Combining and Updating SAS Data Sets 
-You can explore the details here [Combining and Updating SAS Data Sets.sas]
 
 ## Creating Formats from SAS Data Sets
 
