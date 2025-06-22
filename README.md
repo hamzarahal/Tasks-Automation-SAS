@@ -1,4 +1,14 @@
 # Tasks-Automation-SAS
 Sharing and developing sas macros and programs for standardization and automation purpose for clinical studies
 
-##Combining and Updating SAS Data Sets
+## Tasks Involving Conversion: Character to Numeric, Specific Values to Missing, and Changing Case
+
+## Grouping Data
+
+## Summarizing Data
+
+## Combining and Updating SAS Data Sets
+
+## Creating Formats from SAS Data Sets
+
+## Table Lookup Techniques
