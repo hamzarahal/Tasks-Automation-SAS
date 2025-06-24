@@ -88,3 +88,30 @@ data Num_missing;
   end;
   drop i;
 run;
+
+/***Converting a specific value such as 'NA' to a missing value for
+all character variables in a SAS data set***/
+
+*Converting a specific value such as "NA" to a missing value for all
+character variables in a SAS data set;
+data Char_missing;
+  set Demographic;
+  array Chars[*] _character_;
+  do i = 1 to dim(Chars);
+   if Chars[i] in ('NA' 'na') then Chars[i] = ' ';
+   end;
+  drop i;
+run;
+
+/***Changing all character values to either uppercase, lowercase, or
+proper case***/
+
+*Converting all character values to uppercase (or lower- or propercase);
+data Upper;
+  set Demographic;
+  array Chars[*] _character_;
+  do i = 1 to dim(Chars);
+   Chars[i] = upcase(Chars[i]);
+  end;
+   drop i;
+run;
