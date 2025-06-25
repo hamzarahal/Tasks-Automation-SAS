@@ -115,3 +115,19 @@ data Upper;
   end;
    drop i;
 run;
+
+/***Reading a numeric value that contains units such as Lbs. or
+Kgs. in the value***/
+
+*Reading data values that contain units;
+data No_Units;
+  set Units;
+  Weight_Lbs = input(compress(Weight,,'kd'),12.);
+  if findc(Weight,'k','i') then Weight_lbs = Weight_lbs*2.2;
+  Height = compress(Height,,'kds');
+  Feet = input(scan(Height,1,' '),12.);
+  Inches = input(scan(Height,2,' '),12.);
+  if missing(Inches) then Inches = 0;
+  Height_Inches = 12*Feet + Inches;
+  drop Feet Inches;
+run;
