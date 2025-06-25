@@ -17,4 +17,43 @@ run;
 /***Concatenating two SAS data sets with character variables of
 different lengths***/
 
+*Attempting to combine data sets with character variables
+of different lengths using the FORCE option;
+proc append base=Name2 data=Name3 force;
+run;
+
+/***Developing a macro to concatenate two SAS data sets that
+contain character variables of different lengths***/
+
+*Using PROC CONTENTS to output a data set of character variable storage lengths;
+
+proc contents data=Name2 noprint
+out=Out1(keep=Name Type Length where=(Type=2));
+run;
+proc contents data=Name3 noprint
+out=Out2(keep=Name Type Length where=(Type=2));
+run;
+
+*Using a DATA step to write out a SAS program to an external file;
+
+data _null_;
+merge Out1
+Out2(rename=(Length=Length2))
+end=last;
+by Name;
+file "c:\books\tasks\Combined.sas";
+/* Step 1 */
+if _n_ = 1 then put "Data Combined;";
+/* Step 2 */
+L = max(Length,Length2);
+/* Step 3 */
+put " length " Name " $ " L 3. ";";
+/* Step 4 */
+if Last then do;
+put " set Name1 Name2;";
+put "run;";
+end;
+run;
+/* Step 5 */
+%include "combined.sas";
 
