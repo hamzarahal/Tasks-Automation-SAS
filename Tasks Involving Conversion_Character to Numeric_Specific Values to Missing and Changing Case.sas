@@ -131,3 +131,21 @@ data No_Units;
   Height_Inches = 12*Feet + Inches;
   drop Feet Inches;
 run;
+
+/***Solving part of the previous task using a Perl regular expression***/
+
+*Solution using Perl Regular expressions;
+data No_Units;
+  set Units(drop=Height);
+  if _n_ = 1 then do;
+  Regex = "/^(\d+)(\D)/";
+  re = prxparse(Regex);
+  end;
+  retain re;
+  if prxmatch(re,Weight) then do;
+   Weight_Lbs = input(prxposn(re,1,Weight),8.);
+   Units = prxposn(re,2,Weight);
+   if upcase(Units) = 'K' then Weight_Lbs = Weight_Lbs*2.2;
+  end;
+  keep Subj Weight Weight_Lbs;
+run;
