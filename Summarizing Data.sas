@@ -71,3 +71,64 @@ var Heart_Rate;
 output out=Summary(drop=_type_ _freq_)
 n= mean= min= max= / autoname;
 run;
+
+/*** Computing the mean of a variable broken down by values of
+another variable: Using a BY variable ***/
+
+*Computing the mean for each value of a BY variable;
+proc sort data=Blood_Pressure;
+  by Drug;
+run;
+proc means data=Blood_Pressure noprint;
+  by Drug;
+  var Heart_Rate;
+  output out=Summary mean=Mean_HR;
+run;
+
+/***Computing the mean of a variable broken down by values of
+another variable: Using a CLASS statement***/
+
+*Using PROC MEANS to create a summary data set;
+proc means data=Blood_Pressure noprint;
+  class Drug;
+  var Heart_Rate;
+  output out=Summary mean=Mean_HR;
+run;
+
+/***Have PROC MEANS name the variables in the output data set
+automatically (the AUTONAME option)***/
+
+*Demonstrating the AUTONAME option;
+proc means data=Blood_Pressure noprint nway;
+  class Drug;
+  var Heart_Rate;
+  output out=Summary(drop=_type_ _freq_)
+  n= mean= min= max= / autoname;
+run;
+
+/***Creating multiple output data sets from PROC MEANS, each
+with a different combination of CLASS variables***/
+
+*Demonstrating the CHARTYPE procedure option;
+proc means data=Blood_Pressure noprint chartype;
+  class Drug Gender;
+  var Heart_Rate;
+  output out=Summary mean=Mean_HR;
+run;
+
+*Using the _TYPE_ variable to send summary data to separate data sets;
+
+data Grand(drop=Drug Gender)
+ ByGender(drop=Drug)
+ ByDrug(drop=Gender)
+ ByDrugGender;
+ drop _type_ _freq_;
+ set Summary;
+ if _type_ = '00' then output Grand;
+ else if _type_ = '01' then output ByGender;
+ else if _type_ = '10' then output ByDrug;
+ else if _type_ = '11' then output ByDrugGender;
+run;
+
+/***Combining summary information (a single mean) with detail
+data: Using a conditional SET statement***/
