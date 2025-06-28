@@ -132,3 +132,42 @@ run;
 
 /***Combining summary information (a single mean) with detail
 data: Using a conditional SET statement***/
+
+*Program to compare each person's heart rate with the mean heart
+rate of all the observations;
+proc means data=Blood_Pressure noprint;
+  var Heart_Rate;
+  output out=Summary(keep=Mean_HR) mean=Mean_HR;
+run;
+
+*Demonstrating a conditional SET statement (to combine summary data with detail data);
+data Percent_of_Mean;
+ set Blood_Pressure(keep=Heart_Rate Subj);
+ if _n_ = 1 then set Summary;
+ Percent = round(100*(Heart_Rate / Mean_HR));
+run;
+
+/***Combining summary information (a single mean) with detail
+data: Using PROC SQL***/
+
+*Solution using PROC SQL;
+proc sql;
+ create table Percent_of_Mean as
+ select Subj,Heart_Rate,Mean_HR
+ from Blood_Pressure, Summary;
+quit;
+
+/***Combining summary information (a single mean) with detail
+data: Using PROC SQL without using PROC MEANS***/
+
+*PROC SQL solution not using PROC MEANS;
+proc sql;
+ create table Percent_of_Mean as
+ select Subj,Heart_Rate, round(100*Heart_Rate / mean(Heart_Rate))
+ as Percent
+ from Blood_Pressure;
+quit;
+
+/***Combining summary information (a single mean) with detail
+data: Using a macro variable***/
+
