@@ -32,3 +32,32 @@ data Compute_Age;
  Age_Exact = yrdif(DOB,'01jan2012'd);
  Age_Last_Birthday = int(Age_Exact);
 run;
+
+/***Computing a SAS date given a month, day, and year (even if the
+day value is missing)***/
+
+*Data set MoDayYear contains month, day and year data where
+ the value of Day may be missing;
+data MoDayYear;
+   input Month Day Year;
+datalines;
+10 21 1955
+6 . 1985
+8 1 2001
+9 . 2000
+;
+
+*Creating a SAS date when the day of the month may be missing;
+data Compute_Date;
+  set MoDayYear;
+  if missing(Day) then Date = MDY(Month,15,Year);
+  else Date = MDY(Month,Day,Year);
+  format Date date9.;
+run;
+
+*Alternative (elegant) solution suggested by Mark Jordan;
+data Compute_Date;
+  set MoDayYear;
+  Date = MDY(Month,coalesce(Day,15),Year);
+  format Date date9.;
+run;
