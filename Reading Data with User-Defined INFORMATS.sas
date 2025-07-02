@@ -29,3 +29,25 @@ data Temperatures;
  datalines;
  101 N 97.3 111 n N 67 104.5 85
 ;
+
+*Reading letter grades and converting them to numeric values using an informat;
+
+proc format;
+invalue readgrade(upcase just)
+'A' = 95
+'B' = 85
+'C' = 75
+'F' = 65
+other = _same_;
+run;
+data School;
+input ID : $3. Grade : readgrade3.;
+datalines;
+001 97
+002 99
+003 A
+004 C
+005 72
+006 f
+007 b
+;
