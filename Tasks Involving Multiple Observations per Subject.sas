@@ -25,3 +25,21 @@ datalines;
 proc sort data=Duplicates out=Sorted nodupkey;
 by Subj;
 run;
+
+*Fixing the problem with the NODUPRECS option;
+*Possible solution to the problem;
+proc sort data=Multiple out=Features noduprecs;
+by _all_;
+run;
+
+/***Task: Extracting the first and last observation in a BY group***/
+
+Demonstrating First. and Last. variables
+proc sort data=Duplicates out=Sorted_Duplicates;
+by Subj;
+run;
+data _null_;
+ set Sorted_Duplicates;
+ by Subj;
+ put Subj= First.Subj= Last.Subj=;
+run;
