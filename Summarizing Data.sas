@@ -171,3 +171,23 @@ quit;
 /***Combining summary information (a single mean) with detail
 data: Using a macro variable***/
 
+Combining summary information with detail data using a macro variable
+*Solution using a macro variable;
+data _null_;
+ set summary;
+ call symputx('Macro_Mean',Mean_HR);
+run;
+
+*Using PROC SQL to create the macro variable;
+
+proc sql noprint;
+ select mean(Heart_Rate)
+ into :Macro_Mean
+ from Blood_Pressure;
+quit;
+
+*Demonstrating how to use a macro variable in a DATA step;
+data Percent_of_Mean;
+ set Blood_Pressure(keep=Heart_Rate Subj);
+ Percent = round(100*(Heart_Rate / &Macro_Mean));
+run;
