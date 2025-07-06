@@ -31,3 +31,21 @@ put "The number of observations in data set STOCKS is: "
 Number_of_obs;
 How_Far = _n_ / Number_of_obs;
 run;
+
+/***Determining the number of observations in a SAS data set
+and assigning the value to a macro variable***/
+
+*Putting the number of observations in a SAS data set into
+a macro variable;
+data _null_;
+ if 0 then set Stocks nobs=Number_of_obs;
+ call symputx('N_of_obs',Number_of_obs);
+ put "The number of observations in STOCK is &N_of_obs";
+ stop;
+run;
+
+*Listing the last five observations in data set Stocks;
+%let Start = %eval(&N_of_obs - 4);
+data Last_Five;
+ set Stocks(firstobs=&Start);
+run;
