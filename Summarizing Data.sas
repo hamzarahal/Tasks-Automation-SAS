@@ -191,3 +191,33 @@ data Percent_of_Mean;
  set Blood_Pressure(keep=Heart_Rate Subj);
  Percent = round(100*(Heart_Rate / &Macro_Mean));
 run;
+
+/***Combining summary data with detail data—for each category of
+a BY variable***/
+
+*Program to compare each person's heart
+rate with the mean heart rate for each
+value of Gender;
+proc means data=Blood_Pressure noprint nway;
+ class Gender;
+ var Heart_Rate;
+ output out=By_Gender(keep=Gender Mean_HR) mean=Mean_HR;
+run;
+
+*Combining summary data with detail data for each category of a BY variable;
+
+proc sort data=Blood_Pressure;
+ by Gender;
+run;
+
+data Percent_of_Mean;
+ merge Blood_Pressure(keep=Heart_Rate Gender Subj) By_Gender;
+ by Gender;
+ Percent = round(100*(Heart_Rate / Mean_HR));
+run;
+*Put the observations back in Subj order;
+proc sort data=Percent_of_Mean;
+ by Subj;
+run;
+
+
