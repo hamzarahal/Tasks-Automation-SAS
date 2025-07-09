@@ -18,3 +18,5 @@ Sharing and developing sas macros and programs for standardization and automatio
 ## Tasks Involving Dates
 
 ## Data Cleaning Tasks
+
+## Reading Data with User-Defined INFORMATS
