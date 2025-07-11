@@ -20,3 +20,5 @@ Sharing and developing sas macros and programs for standardization and automatio
 ## Data Cleaning Tasks
 
 ## Reading Data with User-Defined INFORMATS
+
+## Tasks Involving Multiple Observations per Subject
