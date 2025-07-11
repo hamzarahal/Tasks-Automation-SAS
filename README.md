@@ -22,3 +22,5 @@ Sharing and developing sas macros and programs for standardization and automatio
 ## Reading Data with User-Defined INFORMATS
 
 ## Tasks Involving Multiple Observations per Subject
+
+## Miscellaneous Tasks
