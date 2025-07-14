@@ -43,3 +43,16 @@ data _null_;
  by Subj;
  put Subj= First.Subj= Last.Subj=;
 run;
+
+/***Detecting duplicate BY values using a DATA step***/
+
+*Detecting duplicate BY values using a DATA step
+*Using a DATA step to detect duplicate BY values;
+proc sort data=Duplicates out=Sorted_Duplicates;
+ by Subj;
+run;
+data Dups;
+ set Sorted_Duplicates;
+ by Subj;
+if first.Subj and last.Subj then delete;
+run;
