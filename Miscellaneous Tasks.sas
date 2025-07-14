@@ -49,3 +49,37 @@ run;
 data Last_Five;
  set Stocks(firstobs=&Start);
 run;
+
+/***Determining the number of observations in a SAS data set
+(using library tables)***/
+
+*Determining the number of observations in a data set using library tables
+*Method using library tables;
+
+data _null_ ;
+ set sashelp.vtable;
+ where libname="WORK" and memname="STOCKS" ;
+ ***Note: you must use uppercase values for libname and memname;
+ Num_obs=Nobs-Delobs;
+ ***Nobs is total number of observations, including deleted ones
+ Delobs is the number of deleted observations;
+ put "Nobs - Delobs: num_obs = " num_obs;
+run;
+
+/***Determining the number of observations in a SAS data set
+(using SAS functions)***/
+
+Determining the number of observations in a SAS data set using SAS functions
+*Using SAS functions;
+data _null_;
+ Exist = exist("stocks");
+ if Exist then do;
+ Dsid = open("Stocks");
+ Num_obs = attrn(Dsid,"Nlobs");
+*Nlobs is the number of logical observations,
+observations not marked for deleting;
+ put "Number of observations in STOCK is: " Num_obs;
+ end;
+ else put "Data set STOCKS does not exist";
+ RC = close(Dsid);
+run;
