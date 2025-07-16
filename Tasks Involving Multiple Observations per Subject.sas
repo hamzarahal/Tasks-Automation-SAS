@@ -56,3 +56,17 @@ data Dups;
  by Subj;
 if first.Subj and last.Subj then delete;
 run;
+
+/***Identifying observations with exactly 'n' observations per subject***/
+
+*Identifying subjects who have exactly two observations;
+proc sort data=Two_Records;
+by Subj;
+run;
+data Not_Two;
+set Two_Records;
+by subj;
+if first.Subj then n=0;
+n + 1;
+if last.Subj and n ne 2 then output;
+run;
