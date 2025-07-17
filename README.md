@@ -13,7 +13,7 @@ Sharing and developing sas macros and programs for standardization and automatio
 
 ## Table Lookup Techniques
 
-## Restructuring (Transposing) SAS Data Sets
+## Restructuring and Transposing SAS Data Sets
 
 ## Tasks Involving Dates
 
