@@ -70,3 +70,17 @@ if first.Subj then n=0;
 n + 1;
 if last.Subj and n ne 2 then output;
 run;
+
+/***Computing differences between observations (for each subject)***/
+
+*Computing inter-patient differences;
+proc sort data=Visits;
+ by Patient Visit;
+run;
+
+data Difference;
+ set Visits;
+ by Patient;
+ Diff_Wt = Weight - lag(Weight);
+ if not first.Patient then output;
+run;
