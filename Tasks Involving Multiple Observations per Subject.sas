@@ -84,3 +84,36 @@ data Difference;
  Diff_Wt = Weight - lag(Weight);
  if not first.Patient then output;
 run;
+
+/***Computing the difference between the first and last observation
+for each subject***/
+
+proc sort data=Visits;
+ by Patient Visit;
+run;
+
+data First_Last;
+ set Visits;
+ by Patient;
+*Delete observations where only one visit;
+ if first.Patient and last.Patient then delete;
+ retain First_Wt;
+ if first.Patient then First_Wt = Weight;
+ if last.Patient then do;
+ Diff_Wt = Weight - First_Wt;
+ output;
+ end;
+run;
+
+*Using the LAG function to compute differences between the first and last visit for
+each patient;
+*Redoing the previous program using the LAG function;
+
+data _First_Last;
+ set Visits;
+ by Patient;
+*Delete observations where only one visit;
+ if first.Patient and last.Patient then delete;
+ if first.Patient or last.Patient then Diff_Wt = Weight – lag(Weight);
+ if last.Patient then output;
+run;
