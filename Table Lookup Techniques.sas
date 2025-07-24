@@ -47,3 +47,26 @@ run;
 proc sort data=Sales_Goals;
 by Sales_ID Year;
 run;
+
+/***Performing a one-way table lookup using user-defined informats***/
+
+*Creating the INFORMAT "manually" using PROC FORMAT;
+proc format;
+invalue Goalfmt 2004=20
+2005=21
+2006=24
+2007=28
+2008=34
+2009=40
+2010=49
+2011=60
+2012=75;
+run;
+
+*Using the informat to perform the table lookup;
+
+data Sales_Goals;
+set Sales;
+Goal = input(put(Year,4.),goalfmt.);
+Difference = Sales - Goal;
+run;
