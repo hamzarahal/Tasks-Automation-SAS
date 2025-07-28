@@ -70,3 +70,15 @@ set Sales;
 Goal = input(put(Year,4.),goalfmt.);
 Difference = Sales - Goal;
 run;
+
+/***Creating an INFORMAT using a control data set***/
+
+*Creating the INFORMAT using a CNTLIN data set;
+data Control;
+ set Goals(rename=(Year=Start Goal=Label));
+retain Fmtname '@goalfmt' Type 'I';
+run;
+
+proc format cntlin=Control;
+ select @goalfmt;
+run;
