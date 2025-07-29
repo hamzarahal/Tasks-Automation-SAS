@@ -82,3 +82,16 @@ run;
 proc format cntlin=Control;
  select @goalfmt;
 run;
+
+/***Performing a one-way table lookup using a temporary array***/
+
+*Load a temporary with the Goals data;
+data Sales_Goals;
+array Goalsarray[2004:2012] _temporary_;
+if _n_ = 1 then do Year = 2004 to 2012;
+set Goals;
+goalsarray[Year] = Goal;
+end;
+set Sales;
+Difference = Sales - Goalsarray[Year];
+run;
