@@ -95,3 +95,19 @@ end;
 set Sales;
 Difference = Sales - Goalsarray[Year];
 run;
+
+/***Performing a two-way table lookup using a temporary array***/
+
+*Twoway table lookup using temporary arrays;
+data Two_Way;
+ array Goals_Job[2004:2012,4] _temporary_;
+  if _n_ = 1 then do Year = 2004 to 2012;
+ do Job = 1 to 4;
+ set Goals_Job;
+ Goals_Job[Year,Job] = Goal;
+ end;
+ end;
+ set Sales_Job;
+ drop Goal Job;
+ Difference = Sales - Goals_Job[Year,Job];
+run;
