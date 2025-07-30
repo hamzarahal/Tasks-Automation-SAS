@@ -57,3 +57,24 @@ run;
 /* Step 5 */
 %include "combined.sas";
 
+/***Updating a SAS data set using a transaction data set***/
+
+Data New_Prices;
+input Item_Number : $4. Price;
+datalines;
+2002 5.98
+4006 16.98
+;
+
+proc sort data=Hardware;
+by Item_Number;
+run;
+proc sort data=New_Prices;
+by Item_Number;
+run;
+
+Data Hardware_June2012;
+update Hardware New_Prices;
+by Item_Number;
+run;
+
