@@ -78,3 +78,39 @@ update Hardware New_Prices;
 by Item_Number;
 run;
 
+/***Using a MODIFY statement to update a master file from a
+transaction file***/
+
+*Using a MODIFY statement to update a master file from a transaction file;
+
+data Hardware;
+ modify Hardware New_Prices;
+run;
+
+/***Updating several variables using a transaction file created with
+an INPUT method called named input***/
+
+*Using named input to create a transaction data set
+*Use "Named Input" method to create the transaction data set;
+
+data New_Values;
+informat Gender $6. Party $10. DOB Date9.;
+input Subj= Score= Weight= Heart_Rate= DOB= Gender= Party=;
+format DOB date9.;
+datalines;
+Subj=2 Score=72 Party=Republican
+Subj=7 DOB=26Nov1951 Weight=140
+;
+
+*Updating a master file using a transaction file created with named input
+proc sort data=Demographic;
+
+by Subj;
+run;
+proc sort data=New_Values;
+by Subj;
+run;
+Data Demographic_June2012;
+update Demographic New_Values;
+by Subj;
+run;
