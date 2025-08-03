@@ -114,3 +114,24 @@ Data Demographic_June2012;
 update Demographic New_Values;
 by Subj;
 run;
+
+/***Matching names from two SAS data sets where the names may
+not be spelled the same (fuzzy merge)***/
+
+*Performing a "fuzzy" match between two SAS data sets;
+
+proc sql;
+ create table Possible_Matches as
+ select * from Name_One, Name_Two
+ where spedis(upcase(Name1),upcase(Name2)) between 1 and 25 and
+ DOB1 eq DOB2 and
+ Gender1 eq Gender2;
+quit;
+
+proc sql;
+ create table Exact_Matches as
+ select * from Name_One, Name_Two
+ where spedis(upcase(Name1),upcase(Name2)) eq 0 and
+ DOB1 eq DOB2 and
+ Gender1 eq Gender2;
+quit;
