@@ -220,4 +220,15 @@ proc sort data=Percent_of_Mean;
  by Subj;
 run;
 
+/***Combining summary information (a single mean) with detail
+data: Using PROC SQL***/
+
+*Combining summary information with detail data using PROC SQL;
+*Solution using PROC SQL;
+proc sql;
+create table Percent_of_Mean as
+select Subj,Heart_Rate,Mean_HR
+from Blood_Pressure, Summary;
+quit;
+
 
