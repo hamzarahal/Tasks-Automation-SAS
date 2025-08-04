@@ -231,4 +231,16 @@ select Subj,Heart_Rate,Mean_HR
 from Blood_Pressure, Summary;
 quit;
 
+/***Combining summary information (a single mean) with detail
+data: Using PROC SQL without using PROC MEANS***/
 
+*Combining summary information with detail data using PROC SQL without using
+PROC MEANS
+*PROC SQL solution not using PROC MEANS;
+
+proc sql;
+ create table Percent_of_Mean as
+ select Subj,Heart_Rate, round(100*Heart_Rate / mean(Heart_Rate))
+ as Percent
+ from Blood_Pressure;
+quit;
