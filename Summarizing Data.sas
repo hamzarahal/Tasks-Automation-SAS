@@ -244,3 +244,17 @@ proc sql;
  as Percent
  from Blood_Pressure;
 quit;
+
+/***Combining summary information (a single mean) with detail
+data: Using a macro variable***/
+
+*Combining summary information with detail data using a macro variable
+*Solution using a macro variable;
+*you can run a short data _NULL_ step to assign the mean (Mean_HR) to a macro variable. 
+You can then use this macro variable in any subsequent DATA or PROC step. Submit the following 
+short DATA step to create the macro variable:;
+
+data _null_;
+set summary;
+call symputx('Macro_Mean',Mean_HR);
+run;
