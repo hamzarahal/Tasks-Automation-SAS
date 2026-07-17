@@ -1,0 +1,7 @@
+{
+  "bundle": "t003_restructuring_transpose",
+  "source_file": "Restructuring (Transposing)SAS Data Sets.sas",
+  "source_blob_sha": "6c03f6ea6cb81bbf175bbfe3217782085cdf6ba2",
+  "source_commit": "f386948ba0112bb017d8dcd3f513b0ee4465bb67",
+  "notes": "Verbatim copy. Reads oneper (inline datalines, one obs per subject) and transposes to ManyPer (multiple obs per subject) via an array + DO loop. No external data."
+}

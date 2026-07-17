@@ -1,0 +1,7 @@
+{
+  "bundle": "t001_grouping_data",
+  "source_file": "Grouping Data.sas",
+  "source_blob_sha": "0712868e7be6a7243a65c4a3f6a6b143f946ca8a",
+  "source_commit": "f386948ba0112bb017d8dcd3f513b0ee4465bb67",
+  "notes": "Verbatim copy. Generates blood_pressure via streaminit/rand, then groups Heart_Rate into HR_Group bands with IF-THEN-ELSE. No external data. autoexec caps obs at 100."
+}

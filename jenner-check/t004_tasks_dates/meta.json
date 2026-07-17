@@ -1,0 +1,7 @@
+{
+  "bundle": "t004_tasks_dates",
+  "source_file": "Tasks Involving Dates.sas",
+  "source_blob_sha": "497656e62a5a358470040505ecaa0684d06f2700",
+  "source_commit": "f386948ba0112bb017d8dcd3f513b0ee4465bb67",
+  "notes": "Verbatim copy. Generates Demographic (streaminit/rand), computes Age via yrdif/int, then MoDayYear (inline datalines) -> Compute_Date via MDY with missing-day handling (coalesce). No external data."
+}
