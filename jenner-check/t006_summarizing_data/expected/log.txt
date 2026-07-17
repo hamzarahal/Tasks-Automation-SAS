@@ -1,0 +1,75 @@
+NOTE: Jenner v1.5.37 (build v1.5.37+886f95a5f1.20260717T051227Z.x86_64-unknown-linux-gnu)
+
+NOTE: Option OBS changed to 100.
+NOTE: DATA blood_pressure
+
+
+NOTE: Wrote blood_pressure (60 rows, 6 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: PROC MEANS
+NOTE: Output dataset Summary has 1 observations and 1 variables.
+NOTE: PROC MEANS statement used.
+NOTE: PROC SORT data=Blood_Pressure
+
+NOTE: Read 60 rows from Blood_Pressure.
+NOTE: Wrote Blood_Pressure (60 rows, 6 columns).
+NOTE: PROC SORT statement used.
+NOTE: PROC MEANS
+NOTE: Output dataset Summary has 3 observations and 4 variables.
+NOTE: PROC MEANS statement used.
+NOTE: PROC MEANS
+NOTE: Output dataset Summary has 4 observations and 4 variables.
+NOTE: PROC MEANS statement used.
+NOTE: PROC MEANS
+NOTE: Output dataset Summary has 3 observations and 5 variables.
+NOTE: PROC MEANS statement used.
+NOTE: PROC SORT data=Blood_Pressure
+
+NOTE: Read 60 rows from Blood_Pressure.
+NOTE: Wrote Blood_Pressure (60 rows, 6 columns).
+NOTE: PROC SORT statement used.
+NOTE: PROC MEANS
+NOTE: Output dataset Summary has 3 observations and 4 variables.
+NOTE: PROC MEANS statement used.
+NOTE: PROC MEANS
+NOTE: Output dataset Summary has 4 observations and 4 variables.
+NOTE: PROC MEANS statement used.
+NOTE: PROC MEANS
+NOTE: Output dataset Summary has 3 observations and 5 variables.
+NOTE: PROC MEANS statement used.
+NOTE: PROC MEANS
+NOTE: Output dataset Summary has 14 observations and 5 variables.
+NOTE: PROC MEANS statement used.
+NOTE: DATA Grand ByGender ByDrug ByDrugGender
+
+NOTE: Multi-output DATA step splits stream into: Grand ByGender ByDrug ByDrugGender
+
+NOTE: Read 14 rows from Summary.
+NOTE: Wrote Grand (1 rows, 3 columns).
+NOTE: Wrote ByGender (3 rows, 3 columns).
+NOTE: Wrote ByDrug (3 rows, 3 columns).
+NOTE: Wrote ByDrugGender (7 rows, 3 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: PROC MEANS
+NOTE: Output dataset Summary has 1 observations and 1 variables.
+NOTE: PROC MEANS statement used.
+NOTE: DATA Percent_of_Mean
+
+
+NOTE: Read 60 rows from Blood_Pressure.
+NOTE: Wrote Percent_of_Mean (60 rows, 4 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: PROC SQL 
+
+NOTE: Table Percent_of_Mean created.
+NOTE: PROC SQL statement used.
+NOTE: PROC SQL 
+
+NOTE: Table Percent_of_Mean created.
+NOTE: PROC SQL statement used.

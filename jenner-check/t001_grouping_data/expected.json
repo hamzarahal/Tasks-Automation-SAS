@@ -1,0 +1,13 @@
+{
+  "_captured_at": "2026-07-17T11:16:39Z",
+  "_captured_run_id": "r_3b3632385ae246e8ab38d670571a4b1e",
+  "status": "ok",
+  "exit_code": 0,
+  "log_contains": [
+    "NOTE: Wrote blood_pressure (60 rows, 6 columns).",
+    "NOTE: Read 60 rows from Blood_Pressure.",
+    "NOTE: Wrote Grouped (60 rows, 3 columns)."
+  ],
+  "log_does_not_contain": ["ERROR:", "[JENNER-ERROR"],
+  "diagnostics": {"parse_warnings": [], "runtime_warnings": []}
+}

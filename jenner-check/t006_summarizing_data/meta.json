@@ -1,0 +1,7 @@
+{
+  "bundle": "t006_summarizing_data",
+  "source_file": "Summarizing Data.sas",
+  "source_blob_sha": "d57946278832f617cc5cbdbb3bedefddc27d7783",
+  "source_commit": "f386948ba0112bb017d8dcd3f513b0ee4465bb67",
+  "notes": "Trimmed to lines 1-169 of the source (author's stray non-comment line at 174 breaks parsing). Retained portion generates blood_pressure then exercises PROC MEANS (BY/CLASS/NWAY/AUTONAME), _TYPE_ multi-output DATA step, and PROC SQL. No external data."
+}
